@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from django.db.models import Model
@@ -25,3 +26,6 @@ class Product(Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # favorites =
     view_count = models.IntegerField(default=0)
+
+class User(AbstractUser):
+    pass
