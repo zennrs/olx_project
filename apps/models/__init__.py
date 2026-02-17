@@ -1,4 +1,4 @@
 
-from apps.models.category import Category
-from apps.models.user import User
-from apps.models.product import Product
+from apps.models.categorys import Category
+from apps.models.users import User
+from apps.models.announcement import Announcement
