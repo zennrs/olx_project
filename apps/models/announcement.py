@@ -22,6 +22,7 @@ class Announcement(Model):
 
     name = CharField(max_length=255)
     description = TextField()
+    price = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     created_at = DateTimeField(auto_now_add=True)
     view_count = models.PositiveIntegerField(default=0)
     owner = ForeignKey(User, related_name="announcements", on_delete=models.CASCADE)
@@ -34,7 +35,7 @@ class Announcement(Model):
         blank=True
     )
 
-    status = CharField(max_length=20, choices=Status.choices, default=Status.NEW)
+    status = CharField(max_length=20, choices=Status.choices, default=Status.Expected)
     product_type = CharField(max_length=10, choices=AnnouncementType.choices, default=AnnouncementType.SIMPLE)
     user= ForeignKey(User, related_name="user_products", on_delete=models.CASCADE)
     location = CharField(max_length=255, null=True, blank=True)  # Location_filed
