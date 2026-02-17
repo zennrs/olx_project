@@ -19,13 +19,3 @@ class Category(Model):
         return self.name
 
 
-class Product(Model):
-    name = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    # favorites =
-    view_count = models.IntegerField(default=0)
-
-class User(AbstractUser):
-    pass
