@@ -2,6 +2,7 @@ from django.db import models
 
 from django.db.models import Model
 
+from apps.models import User
 from root import settings
 
 
@@ -33,9 +34,20 @@ class Product(models.Model):
 
     product_type = models.CharField(max_length=10, choices=ProductType.choices, default=ProductType.SIMPLE)
 
+    user= models.ForeignKey(User, related_name="user_products", on_delete=models.CASCADE)
+
+    location = models.CharField(max_length=255, null=True, blank=True)  # Location_filed
+
+
     def save(self, *args, **kwargs):
         self.name = self.name.strip()
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="product/%Y/%m")
